@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tema Personalizado - Chat Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: black;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 { font-size: 48px; margin-bottom: 20px; }
+    p { font-size: 20px; opacity: 0.9; }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .feature {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+    .feature-icon { font-size: 40px; margin-bottom: 10px; }
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 40px;
+      background: #9c27b0;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 2px solid white;
+    }
+    .btn:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Nina IA</h1>
+    <p>Sua assistente virtual inteligente</p>
+    
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🤖</div>
+        <h3>IA Avançada</h3>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Respostas Rápidas</h3>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎨</div>
+        <h3>Interface Moderna</h3>
+      </div>
+    </div>
+
+    <a href="#" class="btn" onclick="NyxChat.open(); return false;">Conversar com Nina</a>
+  </div>
+
+  <script>
+    window.nyxChatConfig = {
+      serverUrl: 'http://localhost:3000',
+      webhookId: '1cbfd071-ae39-4cc6-bd3c-d419af6a761c',
+      position: 'bottom-right',
+      primaryColor: '#9c27b0',
+      botName: 'Nina IA',
+      welcomeMessage: 'Oi! 👋 Sou a Nina, sua assistente virtual. Como posso ajudar?',
+      placeholder: 'Pergunte-me qualquer coisa...',
+      buttonIcon: '✨'
+    };
+  </script>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="http://localhost:3000/widget.js"></script>
+</body>
+</html>

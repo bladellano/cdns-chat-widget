@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplos de Customização - Nyx Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .example-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .example-card h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 20px;
+    }
+
+    .example-card p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .color-preview {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .code {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 13px;
+      overflow-x: auto;
+      margin-top: 15px;
+    }
+
+    .code pre {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 15px;
+      margin-top: 30px;
+      border-radius: 4px;
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎨 Exemplos de Customização do Chat Widget</h1>
+
+  <div class="examples">
+    
+    <!-- Exemplo 1: Suporte Técnico -->
+    <div class="example-card">
+      <div class="color-preview" style="background: #2196f3;"></div>
+      <h2>💼 Suporte Técnico</h2>
+      <p>Ideal para equipes de suporte ao cliente com design profissional em azul.</p>
+      <a href="example-suporte.html" class="btn">Ver Exemplo</a>
+      <div class="code">
+        <pre>window.nyxChatConfig = {
+  primaryColor: '#2196f3',
+  botName: 'Suporte Técnico',
+  position: 'bottom-right'
+};</pre>
+      </div>
+    </div>
+
+    <!-- Exemplo 2: Vendas -->
+    <div class="example-card">
+      <div class="color-preview" style="background: #ff5722;"></div>
+      <h2>🛒 Equipe de Vendas</h2>
+      <p>Design vibrante em laranja para equipes comerciais e vendas.</p>
+      <a href="example-vendas.html" class="btn">Ver Exemplo</a>
+      <div class="code">
+        <pre>window.nyxChatConfig = {
+  primaryColor: '#ff5722',
+  botName: 'Assistente de Vendas',
+  position: 'bottom-left'
+};</pre>
+      </div>
+    </div>
+
+    <!-- Exemplo 3: Personalizado -->
+    <div class="example-card">
+      <div class="color-preview" style="background: #9c27b0;"></div>
+      <h2>✨ Tema Personalizado</h2>
+      <p>Roxo elegante com personalização completa de mensagens.</p>
+      <a href="example-custom.html" class="btn">Ver Exemplo</a>
+      <div class="code">
+        <pre>window.nyxChatConfig = {
+  primaryColor: '#9c27b0',
+  botName: 'Nina IA',
+  buttonIcon: '✨',
+  welcomeMessage: 'Oi! 👋'
+};</pre>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info-box">
+    <h3>📚 Como usar</h3>
+    <p>
+      Cada exemplo demonstra diferentes configurações do widget. 
+      Copie o código e ajuste conforme suas necessidades.
+    </p>
+    <p>
+      <strong>Opções disponíveis:</strong>
+      <code>primaryColor</code>, 
+      <code>botName</code>, 
+      <code>position</code>, 
+      <code>buttonIcon</code>, 
+      <code>welcomeMessage</code>, 
+      <code>placeholder</code>, 
+      <code>webhookId</code>
+    </p>
+  </div>
+
+  <!-- Configuração do Widget -->
+  <script>
+    window.nyxChatConfig = {
+      serverUrl: 'http://localhost:3000',
+      webhookId: '9f6af178-6821-49c6-a041-6a4419aeb628',
+      position: 'bottom-right',
+      primaryColor: '#25D366',
+      botName: 'Assistente Demo',
+      buttonIcon: '💬'
+    };
+  </script>
+
+  <!-- Scripts do Chat -->
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="http://localhost:3000/widget.js"></script>
+
+</body>
+</html>

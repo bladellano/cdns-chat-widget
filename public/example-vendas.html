@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendas - Chat Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff5722 100%);
+      min-height: 100vh;
+      color: white;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 { font-size: 48px; margin-bottom: 20px; }
+    p { font-size: 20px; opacity: 0.9; }
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 40px;
+      background: white;
+      color: #ff5722;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Equipe de Vendas</h1>
+    <p>Encontre a solução perfeita para sua empresa!</p>
+    <a href="#" class="btn" onclick="NyxChat.open(); return false;">Falar com Vendedor</a>
+  </div>
+
+  <script>
+    window.nyxChatConfig = {
+      serverUrl: 'http://localhost:3000',
+      webhookId: '9f6af178-6821-49c6-a041-6a4419aeb628',
+      position: 'bottom-left',
+      primaryColor: '#ff5722',
+      botName: 'Assistente de Vendas',
+      welcomeMessage: 'Olá! Procurando algum produto específico?',
+      placeholder: 'Digite sua dúvida...',
+      buttonIcon: '🎯'
+    };
+  </script>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="http://localhost:3000/widget.js"></script>
+</body>
+</html>
