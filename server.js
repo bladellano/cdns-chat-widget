@@ -17,6 +17,7 @@ const io = socketIo(server, {
 
 const PORT = process.env.PORT || 3000;
 const N8N_BASE_URL = process.env.N8N_BASE_URL || 'http://host.docker.internal:5678';
+const SERVER_URL = process.env.SERVER_URL || `http://localhost`;
 
 // Middleware
 app.use(cors());
@@ -127,11 +128,11 @@ io.on('connection', (socket) => {
 // Iniciar servidor
 server.listen(PORT, () => {
   console.log(`\n╔═══════════════════════════════════════════════════════╗`);
-  console.log(`║  🚀 Nyx Chat Widget Server rodando!                  ║`);
+  console.log(`║  🚀 Cdns Chat Widget Server rodando!                  ║`);
   console.log(`╠═══════════════════════════════════════════════════════╣`);
-  console.log(`║  📡 Servidor: http://localhost:${PORT}                   ║`);
-  console.log(`║  🔌 Socket.IO: http://localhost:${PORT}/socket.io        ║`);
-  console.log(`║  📦 Widget: http://localhost:${PORT}/widget.js           ║`);
+  console.log(`║  📡 Servidor: ${SERVER_URL}:${PORT}                   ║`);
+  console.log(`║  🔌 Socket.IO: ${SERVER_URL}:${PORT}/socket.io        ║`);
+  console.log(`║  📦 Widget: ${SERVER_URL}:${PORT}/widget.js           ║`);
   console.log(`║  🔗 N8N Base URL: ${N8N_BASE_URL.padEnd(33)}║`);
   console.log(`╚═══════════════════════════════════════════════════════╝\n`);
 });

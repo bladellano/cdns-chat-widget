@@ -8,7 +8,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": ["chat", "widget", "n8n", "webhook", "socket.io"],
-  "author": "Nyx IA",
+  "author": "Cdns IA",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",

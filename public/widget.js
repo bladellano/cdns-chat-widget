@@ -1,20 +1,20 @@
 (function() {
   'use strict';
 
-  // Configurações do widget (podem ser sobrescritas via window.nyxChatConfig)
+  // Configurações do widget (podem ser sobrescritas via window.CdnsChatConfig)
   const defaultConfig = {
     serverUrl: 'http://localhost:3000',
     webhookId: '9f6af178-6821-49c6-a041-6a4419aeb628',
     position: 'bottom-right', // bottom-right, bottom-left, top-right, top-left
     primaryColor: '#25D366', // Verde WhatsApp
-    botName: 'Assistente Nyx',
+    botName: 'Assistente Cdns',
     welcomeMessage: 'Olá! Como posso ajudá-lo?',
     placeholder: 'Digite sua mensagem...',
     buttonIcon: '💬'
   };
 
   // Merge configurações
-  const config = Object.assign({}, defaultConfig, window.nyxChatConfig || {});
+  const config = Object.assign({}, defaultConfig, window.CdnsChatConfig || {});
 
   // Gerar ID de sessão único
   const sessionId = getOrCreateSessionId();
@@ -26,10 +26,10 @@
 
   // Função para gerar/recuperar ID de sessão
   function getOrCreateSessionId() {
-    let sid = localStorage.getItem('nyx_chat_session_id');
+    let sid = localStorage.getItem('cdns_chat_session_id');
     if (!sid) {
       sid = 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-      localStorage.setItem('nyx_chat_session_id', sid);
+      localStorage.setItem('cdns_chat_session_id', sid);
     }
     return sid;
   }
@@ -43,7 +43,7 @@
       ${getPositionStyles()}
     }
 
-    #nyx-chat-button {
+    #cdns-chat-button {
       width: 60px;
       height: 60px;
       border-radius: 50%;
@@ -60,12 +60,12 @@
       position: relative;
     }
 
-    #nyx-chat-button:hover {
+    #cdns-chat-button:hover {
       transform: scale(1.1);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
 
-    #nyx-chat-button .badge {
+    #cdns-chat-button .badge {
       position: absolute;
       top: -5px;
       right: -5px;
@@ -80,7 +80,7 @@
       justify-content: center;
     }
 
-    #nyx-chat-window {
+    #cdns-chat-window {
       position: fixed;
       ${getPositionStyles()}
       width: 380px;
@@ -106,7 +106,7 @@
       }
     }
 
-    #nyx-chat-header {
+    #cdns-chat-header {
       background: ${config.primaryColor};
       color: white;
       padding: 16px 20px;
@@ -115,13 +115,13 @@
       justify-content: space-between;
     }
 
-    #nyx-chat-header-info {
+    #cdns-chat-header-info {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    #nyx-chat-avatar {
+    #cdns-chat-avatar {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -132,19 +132,19 @@
       font-size: 20px;
     }
 
-    #nyx-chat-header-text h3 {
+    #cdns-chat-header-text h3 {
       margin: 0;
       font-size: 16px;
       font-weight: 600;
     }
 
-    #nyx-chat-header-text p {
+    #cdns-chat-header-text p {
       margin: 2px 0 0 0;
       font-size: 12px;
       opacity: 0.9;
     }
 
-    #nyx-chat-close {
+    #cdns-chat-close {
       background: none;
       border: none;
       color: white;
@@ -160,11 +160,11 @@
       transition: background 0.2s;
     }
 
-    #nyx-chat-close:hover {
+    #cdns-chat-close:hover {
       background: rgba(255, 255, 255, 0.2);
     }
 
-    #nyx-chat-messages {
+    #cdns-chat-messages {
       flex: 1;
       overflow-y: auto;
       padding: 20px;
@@ -172,20 +172,20 @@
       background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d9d9d9' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
 
-    #nyx-chat-messages::-webkit-scrollbar {
+    #cdns-chat-messages::-webkit-scrollbar {
       width: 6px;
     }
 
-    #nyx-chat-messages::-webkit-scrollbar-track {
+    #cdns-chat-messages::-webkit-scrollbar-track {
       background: transparent;
     }
 
-    #nyx-chat-messages::-webkit-scrollbar-thumb {
+    #cdns-chat-messages::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.2);
       border-radius: 3px;
     }
 
-    .nyx-message {
+    .cdns-message {
       margin-bottom: 12px;
       display: flex;
       animation: messageIn 0.3s ease;
@@ -202,11 +202,11 @@
       }
     }
 
-    .nyx-message.user {
+    .cdns-message.user {
       justify-content: flex-end;
     }
 
-    .nyx-message-bubble {
+    .cdns-message-bubble {
       max-width: 75%;
       padding: 8px 12px;
       border-radius: 8px;
@@ -214,26 +214,26 @@
       position: relative;
     }
 
-    .nyx-message.bot .nyx-message-bubble {
+    .cdns-message.bot .cdns-message-bubble {
       background: white;
       border-radius: 8px 8px 8px 0;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .nyx-message.user .nyx-message-bubble {
+    .cdns-message.user .cdns-message-bubble {
       background: #dcf8c6;
       border-radius: 8px 8px 0 8px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .nyx-message-time {
+    .cdns-message-time {
       font-size: 11px;
       color: rgba(0, 0, 0, 0.45);
       margin-top: 4px;
       text-align: right;
     }
 
-    .nyx-typing {
+    .cdns-typing {
       display: none;
       align-items: center;
       gap: 4px;
@@ -244,11 +244,11 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    .nyx-typing.active {
+    .cdns-typing.active {
       display: flex;
     }
 
-    .nyx-typing-dot {
+    .cdns-typing-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -256,11 +256,11 @@
       animation: typing 1.4s infinite;
     }
 
-    .nyx-typing-dot:nth-child(2) {
+    .cdns-typing-dot:nth-child(2) {
       animation-delay: 0.2s;
     }
 
-    .nyx-typing-dot:nth-child(3) {
+    .cdns-typing-dot:nth-child(3) {
       animation-delay: 0.4s;
     }
 
@@ -275,7 +275,7 @@
       }
     }
 
-    #nyx-chat-input-container {
+    #cdns-chat-input-container {
       padding: 12px 16px;
       background: white;
       border-top: 1px solid #e0e0e0;
@@ -284,7 +284,7 @@
       align-items: center;
     }
 
-    #nyx-chat-input {
+    #cdns-chat-input {
       flex: 1;
       border: 1px solid #e0e0e0;
       border-radius: 24px;
@@ -294,11 +294,11 @@
       font-family: inherit;
     }
 
-    #nyx-chat-input:focus {
+    #cdns-chat-input:focus {
       border-color: ${config.primaryColor};
     }
 
-    #nyx-chat-send {
+    #cdns-chat-send {
       background: ${config.primaryColor};
       color: white;
       border: none;
@@ -313,17 +313,17 @@
       transition: all 0.2s;
     }
 
-    #nyx-chat-send:hover:not(:disabled) {
+    #cdns-chat-send:hover:not(:disabled) {
       transform: scale(1.1);
     }
 
-    #nyx-chat-send:disabled {
+    #cdns-chat-send:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
 
     @media (max-width: 480px) {
-      #nyx-chat-window {
+      #cdns-chat-window {
         width: 100% !important;
         height: 100% !important;
         max-height: 100vh !important;
@@ -354,36 +354,36 @@
   // Criar HTML do widget
   const widgetHTML = `
     <div id="cdns-chat-widget">
-      <button id="nyx-chat-button" aria-label="Abrir chat">
+      <button id="cdns-chat-button" aria-label="Abrir chat">
         ${config.buttonIcon}
         <span class="badge">0</span>
       </button>
-      <div id="nyx-chat-window">
-        <div id="nyx-chat-header">
-          <div id="nyx-chat-header-info">
-            <div id="nyx-chat-avatar">🤖</div>
-            <div id="nyx-chat-header-text">
+      <div id="cdns-chat-window">
+        <div id="cdns-chat-header">
+          <div id="cdns-chat-header-info">
+            <div id="cdns-chat-avatar">🤖</div>
+            <div id="cdns-chat-header-text">
               <h3>${config.botName}</h3>
               <p>Online</p>
             </div>
           </div>
-          <button id="nyx-chat-close" aria-label="Fechar chat">×</button>
+          <button id="cdns-chat-close" aria-label="Fechar chat">×</button>
         </div>
-        <div id="nyx-chat-messages">
-          <div class="nyx-typing">
-            <div class="nyx-typing-dot"></div>
-            <div class="nyx-typing-dot"></div>
-            <div class="nyx-typing-dot"></div>
+        <div id="cdns-chat-messages">
+          <div class="cdns-typing">
+            <div class="cdns-typing-dot"></div>
+            <div class="cdns-typing-dot"></div>
+            <div class="cdns-typing-dot"></div>
           </div>
         </div>
-        <div id="nyx-chat-input-container">
+        <div id="cdns-chat-input-container">
           <input 
             type="text" 
-            id="nyx-chat-input" 
+            id="cdns-chat-input" 
             placeholder="${config.placeholder}"
             autocomplete="off"
           />
-          <button id="nyx-chat-send" aria-label="Enviar mensagem">
+          <button id="cdns-chat-send" aria-label="Enviar mensagem">
             ➤
           </button>
         </div>
@@ -408,10 +408,10 @@
     connectSocket();
 
     // Event listeners
-    document.getElementById('nyx-chat-button').addEventListener('click', toggleChat);
-    document.getElementById('nyx-chat-close').addEventListener('click', toggleChat);
-    document.getElementById('nyx-chat-send').addEventListener('click', sendMessage);
-    document.getElementById('nyx-chat-input').addEventListener('keypress', function(e) {
+    document.getElementById('cdns-chat-button').addEventListener('click', toggleChat);
+    document.getElementById('cdns-chat-close').addEventListener('click', toggleChat);
+    document.getElementById('cdns-chat-send').addEventListener('click', sendMessage);
+    document.getElementById('cdns-chat-input').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         sendMessage();
       }
@@ -427,12 +427,12 @@
     socket = io(config.serverUrl);
 
     socket.on('connect', function() {
-      console.log('[Nyx Chat] Conectado ao servidor');
+      console.log('[Cdns Chat] Conectado ao servidor');
       updateStatus('Online');
     });
 
     socket.on('disconnect', function() {
-      console.log('[Nyx Chat] Desconectado do servidor');
+      console.log('[Cdns Chat] Desconectado do servidor');
       updateStatus('Offline');
     });
 
@@ -446,20 +446,20 @@
     });
 
     socket.on('connect_error', function(error) {
-      console.error('[Nyx Chat] Erro de conexão:', error);
+      console.error('[Cdns Chat] Erro de conexão:', error);
       addMessage('Erro ao conectar. Por favor, recarregue a página.', 'bot');
     });
   }
 
   function toggleChat() {
     isOpen = !isOpen;
-    const chatWindow = document.getElementById('nyx-chat-window');
-    const chatButton = document.getElementById('nyx-chat-button');
+    const chatWindow = document.getElementById('cdns-chat-window');
+    const chatButton = document.getElementById('cdns-chat-button');
 
     if (isOpen) {
       chatWindow.style.display = 'flex';
       chatButton.style.display = 'none';
-      document.getElementById('nyx-chat-input').focus();
+      document.getElementById('cdns-chat-input').focus();
     } else {
       chatWindow.style.display = 'none';
       chatButton.style.display = 'flex';
@@ -467,7 +467,7 @@
   }
 
   function sendMessage() {
-    const input = document.getElementById('nyx-chat-input');
+    const input = document.getElementById('cdns-chat-input');
     const message = input.value.trim();
 
     if (!message || !socket) return;
@@ -489,9 +489,9 @@
   }
 
   function addMessage(text, type) {
-    const messagesContainer = document.getElementById('nyx-chat-messages');
+    const messagesContainer = document.getElementById('cdns-chat-messages');
     const messageDiv = document.createElement('div');
-    messageDiv.className = `nyx-message ${type}`;
+    messageDiv.className = `cdns-message ${type}`;
 
     const time = new Date().toLocaleTimeString('pt-BR', { 
       hour: '2-digit', 
@@ -499,14 +499,14 @@
     });
 
     messageDiv.innerHTML = `
-      <div class="nyx-message-bubble">
+      <div class="cdns-message-bubble">
         ${escapeHtml(text)}
-        <div class="nyx-message-time">${time}</div>
+        <div class="cdns-message-time">${time}</div>
       </div>
     `;
 
     // Inserir antes do indicador de digitação
-    const typingIndicator = messagesContainer.querySelector('.nyx-typing');
+    const typingIndicator = messagesContainer.querySelector('.cdns-typing');
     messagesContainer.insertBefore(messageDiv, typingIndicator);
 
     // Scroll para o final
@@ -514,23 +514,23 @@
   }
 
   function showTyping() {
-    const typing = document.querySelector('.nyx-typing');
+    const typing = document.querySelector('.cdns-typing');
     if (typing) {
       typing.classList.add('active');
-      const messagesContainer = document.getElementById('nyx-chat-messages');
+      const messagesContainer = document.getElementById('cdns-chat-messages');
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
   }
 
   function hideTyping() {
-    const typing = document.querySelector('.nyx-typing');
+    const typing = document.querySelector('.cdns-typing');
     if (typing) {
       typing.classList.remove('active');
     }
   }
 
   function updateStatus(status) {
-    const statusEl = document.querySelector('#nyx-chat-header-text p');
+    const statusEl = document.querySelector('#cdns-chat-header-text p');
     if (statusEl) {
       statusEl.textContent = status;
     }
@@ -543,7 +543,7 @@
   }
 
   // Expor API pública
-  window.NyxChat = {
+  window.CdnsChat = {
     open: function() {
       if (!isOpen) toggleChat();
     },
@@ -551,7 +551,7 @@
       if (isOpen) toggleChat();
     },
     sendMessage: function(msg) {
-      document.getElementById('nyx-chat-input').value = msg;
+      document.getElementById('cdns-chat-input').value = msg;
       sendMessage();
     }
   };

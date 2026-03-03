@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo - Nyx Chat Widget</title>
+  <title>Demo - Cdns Chat Widget</title>
   <style>
     * {
       margin: 0;
@@ -164,7 +164,7 @@
 <body>
   
   <div class="container">
-    <h1>🚀 Nyx Chat Widget</h1>
+    <h1>🚀 Cdns Chat Widget</h1>
     <p class="subtitle">Demonstração do Widget de Chat com n8n</p>
 
     <div class="feature-grid">
@@ -191,10 +191,10 @@
     </div>
 
     <div class="actions">
-      <button class="btn btn-primary" onclick="NyxChat.open()">
+      <button class="btn btn-primary" onclick="CdnsChat.open()">
         💬 Abrir Chat
       </button>
-      <button class="btn btn-secondary" onclick="NyxChat.sendMessage('Olá! Preciso de ajuda.')">
+      <button class="btn btn-secondary" onclick="CdnsChat.sendMessage('Olá! Preciso de ajuda.')">
         📨 Enviar Mensagem
       </button>
       <button class="btn btn-outline" onclick="window.location.reload()">
@@ -211,12 +211,12 @@
 
   <!-- Configuração do Widget -->
   <script>
-    window.nyxChatConfig = {
+    window.CdnsChatConfig = {
       serverUrl: 'http://localhost:3000',
       webhookId: '9f6af178-6821-49c6-a041-6a4419aeb628',
       position: 'bottom-right',
       primaryColor: '#25D366',
-      botName: 'Assistente Nyx',
+      botName: 'Assistente Cdns',
       welcomeMessage: 'Olá! Como posso ajudá-lo?',
       placeholder: 'Digite sua mensagem...',
       buttonIcon: '💬'

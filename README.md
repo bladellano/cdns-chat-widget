@@ -1,4 +1,4 @@
-# 🚀 Nyx Chat Widget
+# 🚀 Cdns Chat Widget
 
 Widget de chat simples e elegante para integração com webhook n8n. Design inspirado no WhatsApp, fácil de integrar em qualquer site.
 
@@ -102,7 +102,7 @@ Você pode customizar o widget adicionando um objeto de configuração antes de 
 
 ```html
 <script>
-  window.nyxChatConfig = {
+  window.CdnsChatConfig = {
     serverUrl: 'http://localhost:3000',
     webhookId: '9f6af178-6821-49c6-a041-6a4419aeb628',
     position: 'bottom-right',      // 'bottom-right', 'bottom-left', 'top-right', 'top-left'
@@ -125,7 +125,7 @@ Você pode customizar o widget adicionando um objeto de configuração antes de 
 | `webhookId` | string | `9f6af178-6821-49c6-a041-6a4419aeb628` | ID do webhook n8n |
 | `position` | string | `bottom-right` | Posição do widget na tela |
 | `primaryColor` | string | `#25D366` | Cor principal (verde WhatsApp) |
-| `botName` | string | `Assistente Nyx` | Nome exibido no cabeçalho |
+| `botName` | string | `Assistente Cdns` | Nome exibido no cabeçalho |
 | `welcomeMessage` | string | `Olá! Como posso ajudá-lo?` | Mensagem inicial |
 | `placeholder` | string | `Digite sua mensagem...` | Placeholder do input |
 | `buttonIcon` | string | `💬` | Ícone do botão flutuante |
@@ -137,7 +137,7 @@ Para usar webhooks diferentes em sites diferentes, basta alterar o `webhookId`:
 ### Site 1 - Suporte Técnico
 ```html
 <script>
-  window.nyxChatConfig = {
+  window.CdnsChatConfig = {
     serverUrl: 'http://localhost:3000',
     webhookId: 'webhook-id-suporte',
     botName: 'Suporte Técnico',
@@ -149,7 +149,7 @@ Para usar webhooks diferentes em sites diferentes, basta alterar o `webhookId`:
 ### Site 2 - Vendas
 ```html
 <script>
-  window.nyxChatConfig = {
+  window.CdnsChatConfig = {
     serverUrl: 'http://localhost:3000',
     webhookId: 'webhook-id-vendas',
     botName: 'Assistente de Vendas',
@@ -160,24 +160,24 @@ Para usar webhooks diferentes em sites diferentes, basta alterar o `webhookId`:
 
 ## 📡 API do Widget
 
-O widget expõe uma API JavaScript global `window.NyxChat`:
+O widget expõe uma API JavaScript global `window.CdnsChat`:
 
 ```javascript
 // Abrir o chat programaticamente
-NyxChat.open();
+CdnsChat.open();
 
 // Fechar o chat
-NyxChat.close();
+CdnsChat.close();
 
 // Enviar uma mensagem programaticamente
-NyxChat.sendMessage('Olá, preciso de ajuda!');
+CdnsChat.sendMessage('Olá, preciso de ajuda!');
 ```
 
 ### Exemplo de uso
 
 ```html
-<button onclick="NyxChat.open()">Falar com Suporte</button>
-<button onclick="NyxChat.sendMessage('Quero contratar um plano')">
+<button onclick="CdnsChat.open()">Falar com Suporte</button>
+<button onclick="CdnsChat.sendMessage('Quero contratar um plano')">
   Contratar Plano
 </button>
 ```
@@ -365,4 +365,4 @@ Para suporte, entre em contato ou abra uma issue no repositório.
 
 ---
 
-**Desenvolvido com ❤️ por Nyx IA**
+**Desenvolvido com ❤️ por Cdns IA**
