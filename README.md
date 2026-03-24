@@ -10,6 +10,7 @@ Widget de chat simples e elegante para integração com webhook n8n. Design insp
 - 🎨 Customizável (cores, posição, textos)
 - ⚡ Leve e rápido
 - 🔒 Suporte a sessões persistentes
+- 📝 **Suporte a Markdown** (negrito, itálico, código, listas, links)
 
 ## 📋 Pré-requisitos
 
@@ -182,7 +183,60 @@ CdnsChat.sendMessage('Olá, preciso de ajuda!');
 </button>
 ```
 
-## 🔧 Estrutura do Projeto
+## � Suporte a Markdown
+
+O widget agora suporta formatação markdown nas mensagens do bot! Isso permite respostas mais estruturadas e legíveis.
+
+### Elementos Suportados
+
+**Formatação de Texto:**
+- `**negrito**` ou `__negrito__` → **negrito**
+- `*itálico*` ou `_itálico_` → *itálico*
+- `` `código` `` → `código`
+
+**Blocos de Código:**
+```markdown
+```
+código em bloco
+com múltiplas linhas
+```
+```
+
+**Listas:**
+```markdown
+- Item 1
+- Item 2
+- Item 3
+```
+
+**Títulos:**
+```markdown
+# Título Principal
+## Subtítulo
+### Seção
+```
+
+**Links:**
+```markdown
+[Texto do Link](https://url.com)
+```
+
+**Parágrafos:**
+Use linha dupla para separar parágrafos.
+
+### Exemplo de Resposta do n8n
+
+```json
+{
+  "message": "# Olá!\n\nBem-vindo ao nosso chat.\n\n**Como podemos ajudar?**\n\n- Suporte técnico\n- Vendas\n- Informações gerais\n\nAcesse nossa [documentação](https://example.com) para mais detalhes!"
+}
+```
+
+📖 **Documentação completa:** Veja [MARKDOWN_SUPPORT.md](MARKDOWN_SUPPORT.md) para mais exemplos e detalhes.
+
+🎮 **Demo interativa:** Acesse `http://localhost:3000/demo-markdown.html` após iniciar o servidor.
+
+## �🔧 Estrutura do Projeto
 
 ```
 cdns-chat-widget/

@@ -212,6 +212,7 @@
       border-radius: 8px;
       word-wrap: break-word;
       position: relative;
+      line-height: 1.5;
     }
 
     .cdns-message.bot .cdns-message-bubble {
@@ -225,6 +226,85 @@
       border-radius: 8px 8px 0 8px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
+
+    /* Estilos para markdown */
+    .cdns-message-bubble p {
+      margin: 0 0 8px 0;
+    }
+
+    .cdns-message-bubble p:last-child {
+      margin-bottom: 0;
+    }
+
+    .cdns-message-bubble strong {
+      font-weight: 600;
+    }
+
+    .cdns-message-bubble em {
+      font-style: italic;
+    }
+
+    .cdns-message-bubble code {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+
+    .cdns-message-bubble pre {
+      background: rgba(0, 0, 0, 0.08);
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 8px 0;
+    }
+
+    .cdns-message-bubble pre code {
+      background: none;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .cdns-message-bubble ul,
+    .cdns-message-bubble ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    .cdns-message-bubble li {
+      margin: 4px 0;
+    }
+
+    .cdns-message-bubble a {
+      color: #075e54;
+      text-decoration: underline;
+    }
+
+    .cdns-message.user .cdns-message-bubble a {
+      color: #128c7e;
+    }
+
+    .cdns-message-bubble blockquote {
+      border-left: 3px solid rgba(0, 0, 0, 0.2);
+      margin: 8px 0;
+      padding-left: 12px;
+      font-style: italic;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .cdns-message-bubble h1,
+    .cdns-message-bubble h2,
+    .cdns-message-bubble h3,
+    .cdns-message-bubble h4 {
+      margin: 8px 0 4px 0;
+      font-weight: 600;
+    }
+
+    .cdns-message-bubble h1 { font-size: 18px; }
+    .cdns-message-bubble h2 { font-size: 16px; }
+    .cdns-message-bubble h3 { font-size: 15px; }
+    .cdns-message-bubble h4 { font-size: 14px; }
 
     .cdns-message-time {
       font-size: 11px;
@@ -498,9 +578,12 @@
       minute: '2-digit' 
     });
 
+    // Usar parseMarkdown para mensagens do bot, escapeHtml para mensagens do usuário
+    const formattedText = type === 'bot' ? parseMarkdown(text) : escapeHtml(text).replace(/\n/g, '<br>');
+
     messageDiv.innerHTML = `
       <div class="cdns-message-bubble">
-        ${escapeHtml(text)}
+        ${formattedText}
         <div class="cdns-message-time">${time}</div>
       </div>
     `;
@@ -540,6 +623,58 @@
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+
+  // Função para converter markdown em HTML
+  function parseMarkdown(text) {
+    // Escapar HTML primeiro para segurança
+    let html = escapeHtml(text);
+    
+    // Code blocks (```)
+    html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+    
+    // Inline code (`)
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // Bold (**texto** ou __texto__)
+    html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    
+    // Italic (*texto* ou _texto_)
+    html = html.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+    html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
+    
+    // Links [texto](url)
+    html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    
+    // Headers (# título)
+    html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+    
+    // Listas não ordenadas (- item ou * item)
+    html = html.replace(/^[\-\*] (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+    
+    // Listas ordenadas (1. item)
+    html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+    
+    // Blockquote (> texto)
+    html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+    
+    // Quebras de linha duplas = parágrafo
+    const paragraphs = html.split(/\n\n+/);
+    html = paragraphs.map(p => {
+      p = p.trim();
+      // Não envolver em <p> se já for um elemento block
+      if (p.startsWith('<h') || p.startsWith('<ul>') || p.startsWith('<ol>') || 
+          p.startsWith('<pre>') || p.startsWith('<blockquote>')) {
+        return p;
+      }
+      return p ? `<p>${p.replace(/\n/g, '<br>')}</p>` : '';
+    }).join('');
+    
+    return html;
   }
 
   // Expor API pública

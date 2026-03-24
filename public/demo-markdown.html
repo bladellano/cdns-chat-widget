@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Markdown - Cdns Chat Widget</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      background: white;
+      border-radius: 20px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .demo-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .demo-section h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      text-align: left;
+      background: #667eea;
+      color: white;
+    }
+
+    .btn:hover {
+      background: #5568d3;
+      transform: translateX(5px);
+    }
+
+    .code-example {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <h1>📝 Demo Markdown</h1>
+    <p class="subtitle">Teste o suporte a markdown nas mensagens do chat!</p>
+
+    <div class="demo-section">
+      <h3>✨ Exemplos de Formatação</h3>
+      <div class="actions">
+        <button class="btn" onclick="testarNegrito()">
+          <strong>Negrito</strong> - Texto em negrito
+        </button>
+        <button class="btn" onclick="testarItalico()">
+          <em>Itálico</em> - Texto em itálico
+        </button>
+        <button class="btn" onclick="testarCodigo()">
+          <code>Código</code> - Código inline
+        </button>
+        <button class="btn" onclick="testarBlocoCode()">
+          💻 Bloco de Código
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>📋 Listas e Estruturas</h3>
+      <div class="actions">
+        <button class="btn" onclick="testarLista()">
+          📝 Lista com Itens
+        </button>
+        <button class="btn" onclick="testarTitulos()">
+          📰 Títulos e Hierarquia
+        </button>
+        <button class="btn" onclick="testarLink()">
+          🔗 Links Clicáveis
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>🎨 Texto Complexo</h3>
+      <div class="actions">
+        <button class="btn" onclick="testarCompleto()">
+          🚀 Exemplo Completo
+        </button>
+        <button class="btn" onclick="testarParagrafos()">
+          📄 Múltiplos Parágrafos
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btn" style="background: #25D366; display: inline-block; width: auto;" onclick="CdnsChat.open()">
+        💬 Abrir Chat
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function testarNegrito() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Este é um texto **em negrito** e este __também está em negrito__!');
+      }, 500);
+    }
+
+    function testarItalico() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Este é um texto *em itálico* e este _também está em itálico_!');
+      }, 500);
+    }
+
+    function testarCodigo() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Use o comando `npm install` para instalar as dependências do projeto.');
+      }, 500);
+    }
+
+    function testarBlocoCode() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Aqui está um exemplo de código:\n\n```\nfunction hello() {\n  console.log("Hello World!");\n}\n```\n\nEste é um bloco de código formatado!');
+      }, 500);
+    }
+
+    function testarLista() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Aqui está uma lista de tarefas:\n\n- Primeira tarefa\n- Segunda tarefa\n- Terceira tarefa\n\nTodas as tarefas estão organizadas!');
+      }, 500);
+    }
+
+    function testarTitulos() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('# Título Principal\n\nEste é um parágrafo.\n\n## Subtítulo\n\nOutro parágrafo aqui.\n\n### Seção Menor\n\nMais conteúdo.');
+      }, 500);
+    }
+
+    function testarLink() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Visite o [Google](https://www.google.com) ou acesse a [documentação](https://github.com)!');
+      }, 500);
+    }
+
+    function testarCompleto() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('# Guia Rápido\n\n## Instalação\n\nPara instalar, use o comando:\n\n```\nnpm install cdns-chat-widget\n```\n\n## Recursos\n\n- **Socket.IO** para tempo real\n- *Design WhatsApp* como inspiração\n- `Código inline` quando necessário\n\n## Links Úteis\n\nVisite nossa [documentação](https://example.com) para mais detalhes!\n\n**Pronto para começar?**');
+      }, 500);
+    }
+
+    function testarParagrafos() {
+      CdnsChat.open();
+      setTimeout(() => {
+        simulateBot('Este é o primeiro parágrafo com texto corrido que demonstra como o markdown lida com quebras de linha.\n\nEste é um segundo parágrafo completamente separado do primeiro.\n\nE este é um terceiro parágrafo para mostrar a formatação adequada!');
+      }, 500);
+    }
+
+    // Simular mensagem do bot
+    function simulateBot(message) {
+      const event = new CustomEvent('bot-test-message', { detail: { message } });
+      window.dispatchEvent(event);
+    }
+
+    // Listener customizado para simular mensagens do bot
+    window.addEventListener('bot-test-message', (e) => {
+      // Injetar diretamente na função addMessage simulando um evento do socket
+      const messagesContainer = document.getElementById('cdns-chat-messages');
+      if (messagesContainer) {
+        // Trigger internamente chamando através do window.CdnsChat (se expusermos)
+        // Por enquanto, vamos simular via DOM
+        const event = new CustomEvent('simulate-bot-message', { detail: e.detail });
+        document.dispatchEvent(event);
+      }
+    });
+  </script>
+
+  <!-- Configuração do Widget -->
+  <script>
+    window.CdnsChatConfig = {
+      serverUrl: 'http://localhost:3000',
+      webhookId: '9f6af178-6821-49c6-a041-6a4419aeb628',
+      position: 'bottom-right',
+      primaryColor: '#667eea',
+      botName: 'Assistente Markdown',
+      welcomeMessage: 'Olá! Agora suporto **markdown**! 🎉\n\nTeste enviar mensagens com:\n- **Negrito**\n- *Itálico*\n- `Código inline`\n- E muito mais!',
+      placeholder: 'Digite sua mensagem...',
+      buttonIcon: '📝'
+    };
+  </script>
+
+  <!-- Scripts do Chat -->
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="http://localhost:3000/widget.js"></script>
+
+  <script>
+    // Interceptar socket.io para simular mensagens nos botões de demo
+    document.addEventListener('simulate-bot-message', (e) => {
+      // Força adicionar mensagem diretamente
+      setTimeout(() => {
+        const messagesContainer = document.getElementById('cdns-chat-messages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'cdns-message bot';
+        
+        const time = new Date().toLocaleTimeString('pt-BR', { 
+          hour: '2-digit', 
+          minute: '2-digit' 
+        });
+        
+        // Parse markdown
+        let html = e.detail.message;
+        const div = document.createElement('div');
+        div.textContent = html;
+        html = div.innerHTML;
+        
+        // Mesmo processo do parseMarkdown
+        html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+        html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+        html = html.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+        html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
+        html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+        html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+        html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+        html = html.replace(/^[\-\*] (.+)$/gm, '<li>$1</li>');
+        html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+        html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+        
+        const paragraphs = html.split(/\n\n+/);
+        html = paragraphs.map(p => {
+          p = p.trim();
+          if (p.startsWith('<h') || p.startsWith('<ul>') || p.startsWith('<ol>') || 
+              p.startsWith('<pre>') || p.startsWith('<blockquote>')) {
+            return p;
+          }
+          return p ? `<p>${p.replace(/\n/g, '<br>')}</p>` : '';
+        }).join('');
+        
+        messageDiv.innerHTML = `
+          <div class="cdns-message-bubble">
+            ${html}
+            <div class="cdns-message-time">${time}</div>
+          </div>
+        `;
+        
+        const typingIndicator = messagesContainer.querySelector('.cdns-typing');
+        messagesContainer.insertBefore(messageDiv, typingIndicator);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 100);
+    });
+  </script>
+
+</body>
+</html>
